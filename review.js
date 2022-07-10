@@ -1,9 +1,4 @@
-// add water
-// add coffee beans
-// grind it
-// brewing
-//
-// coffeeType,size, isHot,
+/*Coffee Machine Class demo*/
 class CoffeeMachine {
   constructor(coffeeType, size, isHot) {
     this.coffeeType = coffeeType;
@@ -11,22 +6,22 @@ class CoffeeMachine {
     this.isHot = isHot;
   }
   _addWater() {
-    return "water is ready\n";
+    return "water is ready!";
   }
   _addCoffee() {
-    return `${this.coffeeType} is selected\n`;
+    return `\n${this.coffeeType} is selected`;
   }
   _grindCoffee() {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(`${this.coffeeType} is ground\n`);
+        resolve(`\n${this.coffeeType} is ground`);
       }, 5000);
     });
   }
   _brewing() {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(`${this.coffeeType} is brewed\n`);
+        resolve(`\n${this.coffeeType} is brewed`);
       }, 8000);
     });
   }
@@ -39,16 +34,20 @@ class CoffeeMachine {
       this._brewing(),
     ]);
     console.log(groundCoffee, brewedCoffee);
+    return true;
   }
   async serve() {
+    console.time();
+    this.timer();
     await this._createCoffee();
-    // this.timer();
-    console.log("Coffee is ready, please enjoy");
+
+    console.timeEnd();
+    console.log("\nCoffee is ready, please enjoy");
   }
-  timer() {
-    setTimeout(() => {
-      console.log("something");
-    }, 5000);
+  tellTime() {
+    setInterval(() => {
+      console.log(new Date().toLocaleTimeString());
+    }, 1000);
   }
 }
 
